@@ -1,5 +1,14 @@
 numpy
 pandas
+python-dotenv
+mysql-connector-python
+pymysql
+scikit-learn
 
 
--e .
+
+
+
+
+
+# -e .
