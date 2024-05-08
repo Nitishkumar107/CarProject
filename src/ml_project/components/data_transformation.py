@@ -40,9 +40,9 @@ class DataTransformation:
                                 ('scaler',StandardScaler())
                             ])
             
-            # to hadle missing values with categorical values with most frequent values or mode 
+            # to handle missing values with categorical values with most frequent values or mode 
             cat_pipeline = Pipeline(steps=[
-                    ('imputer', SimpleImputer(strategy = 'most_fre')),
+                    ('imputer', SimpleImputer(strategy = 'most_frequent')),
                     ('one_hot_encoder',OneHotEncoder()), # OneHotEncoder is a commonly used technique for converting categorical variables into a numerical representation 
                     ('scaler',StandardScaler(with_mean = False)) # standardize features by removing the mean and scaling them to unit variance 
 
@@ -89,11 +89,13 @@ class DataTransformation:
             target_feature_test_df = test_df[target_columns_name]
 
 
-            logging.info('applying processing on training and test datasets')
+            logging.info('applying Preprocessing on training and test datasets')
 
             input_feature_train_arr=preproccessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preproccessing_obj.transform(input_feature_test_df)
 
+            # np.c_ is numpy concatinatinatin
+            # Here we are concatinating input_feature_train_arr and target_feature_train_df in train_arr
             train_arr =np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
             ]
@@ -101,7 +103,8 @@ class DataTransformation:
                 input_feature_test_arr, np.array(target_feature_test_df)
             ]
             logging.info(f"saved preprocessing object")
-
+            # here using utils.save_object function , we will dumb the pickle file at the location 
+            # of the preprocessor_obj_file_path which is defined above like ""artifacts","preprocessor.pkl""
             save_object(file_path=self.data_transformation_config.preprocessor_obj_file_path,obj=preproccessing_obj)
             return (
                 train_arr,test_arr, self.data_transformation_config.preprocessor_obj_file_path

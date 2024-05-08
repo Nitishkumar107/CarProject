@@ -30,7 +30,7 @@ def read_sql_data():
     except Exception as e:
         raise CustomException(e)
 
-
+# to save the data in pickle file at the given location , wb is write mode
 def save_object(file_path, obj):
     try:
         dir_path = os.path.dirname(file_path)

@@ -3,9 +3,8 @@ from src.ml_project.exception import CustomException
 import sys
 from src.ml_project.components.data_ingestion import DataIngestion
 from src.ml_project.components.data_ingestion import dataIngestionConfig
-from src.ml_project.components.data_transformation import dataTransformationConfig
+from src.ml_project.components.data_transformation import dataTransformationConfig,DataTransformation
 
-from src.ml_project.components.data_transformation import DataTransformation
 
 
 
