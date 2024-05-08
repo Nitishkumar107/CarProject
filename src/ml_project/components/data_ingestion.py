@@ -21,7 +21,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         try:
             # Reading the data from the dataBase directory
-            df = read_sql_data() # here we get raw data from the utils
+            #df = read_sql_data() # here we get raw data from the utils
+            df = pd.read_csv(os.path.join('notebook/data','raw.csv'))
             logging.info('Reading completed from mysql database...')
 
 
