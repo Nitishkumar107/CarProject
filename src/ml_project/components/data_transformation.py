@@ -2,7 +2,7 @@ import sys
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
-
+import os  
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -10,9 +10,9 @@ from sklearn.pipeline import Pipeline
 from src.ml_project.logger import logging
 from src.ml_project.utils import CustomException
 
-import os   
-
 from src.ml_project.utils import save_object
+
+
 
 @dataclass
 class dataTransformationConfig:
@@ -105,10 +105,15 @@ class DataTransformation:
             logging.info(f"saved preprocessing object")
             # here using utils.save_object function , we will dumb the pickle file at the location 
             # of the preprocessor_obj_file_path which is defined above like ""artifacts","preprocessor.pkl""
+            
             save_object(file_path=self.data_transformation_config.preprocessor_obj_file_path,obj=preproccessing_obj)
             return (
                 train_arr,test_arr, self.data_transformation_config.preprocessor_obj_file_path
             )
+        
+
+
+
         except Exception as e:
             raise CustomException(e,sys)
                     

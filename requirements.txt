@@ -11,6 +11,8 @@ catboost
 xgboost
 dataclasses
 pickle
+dill
+mlflow==2.2.2
 
 
 
